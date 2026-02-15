@@ -101,7 +101,7 @@ function App() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img src={`${import.meta.env.BASE_URL}icon.svg`} alt="LifeFlow Logo" className="w-8 h-8" />
-            <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               LifeFlow
             </h1>
           </div>
@@ -119,7 +119,7 @@ function App() {
         <aside className={`
           fixed md:sticky top-0 left-0 h-screen z-30
           w-64 p-6 border-r transition-transform duration-300
-          ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+          ${mobileMenuOpen ? 'translate-x-0 pt-20 md:pt-6' : '-translate-x-full md:translate-x-0'}
         `} style={{
             backgroundColor: 'var(--color-surface)',
             borderColor: 'var(--color-border)'
@@ -128,7 +128,7 @@ function App() {
           <div className="mb-8 hidden md:block">
             <div className="flex items-center gap-3 mb-2">
               <img src={`${import.meta.env.BASE_URL}icon.svg`} alt="LifeFlow Logo" className="w-10 h-10" />
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 LifeFlow
               </h1>
             </div>
