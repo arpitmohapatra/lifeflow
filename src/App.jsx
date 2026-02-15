@@ -93,36 +93,38 @@ function App() {
 
   return (
     <div className={`min-h-screen transition-opacity duration-500 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
-      {/* Mobile Header */}
-      <header className="md:hidden sticky top-0 z-40 px-4 py-3 border-b backdrop-blur-sm" style={{
-        backgroundColor: 'color-mix(in srgb, var(--color-background), transparent 20%)',
-        borderColor: 'var(--color-border)'
+      {/* Mobile Floating Header */}
+      <header className="md:hidden fixed top-4 left-4 right-4 z-40 px-6 py-4 rounded-3xl backdrop-blur-xl border shadow-2xl transition-all" style={{
+        backgroundColor: 'var(--color-glass)',
+        borderColor: 'var(--color-glass-border)'
       }}>
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <img src={`${import.meta.env.BASE_URL}icon.svg`} alt="LifeFlow Logo" className="w-8 h-8" />
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <div className="flex items-center gap-3">
+            <img src={`${import.meta.env.BASE_URL}icon.svg`} alt="LifeFlow Logo" className="w-10 h-10" />
+            <h1 className="text-3xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent tracking-tighter">
               LifeFlow
             </h1>
           </div>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg hover:bg-surface cursor-pointer"
+            className="p-2.5 rounded-2xl hover:bg-surface transition-colors cursor-pointer"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-7 h-7 text-text" /> : <Menu className="w-7 h-7 text-text" />}
           </button>
         </div>
       </header>
 
-      <div className="flex min-h-screen overflow-x-hidden">
+      <div className="flex min-h-screen overflow-x-hidden md:p-6 lg:p-8">
         {/* Sidebar */}
         <aside className={`
-          fixed md:sticky top-0 left-0 h-screen z-30
-          w-64 p-6 border-r transition-transform duration-300
-          ${mobileMenuOpen ? 'translate-x-0 pt-20 md:pt-6' : '-translate-x-full md:translate-x-0'}
+          fixed md:sticky top-0 md:top-6 left-0 h-screen md:h-[calc(100vh-3rem)] z-30
+          w-72 p-8 md:rounded-3xl border transition-all duration-500 ease-spring
+          ${mobileMenuOpen ? 'translate-x-0 pt-28' : '-translate-x-full md:translate-x-0'}
+          ${!mobileMenuOpen && 'md:shadow-xl md:shadow-black/5'}
         `} style={{
             backgroundColor: 'var(--color-surface)',
-            borderColor: 'var(--color-border)'
+            borderColor: 'var(--color-border)',
+            backdropFilter: 'blur(40px)'
           }}>
           {/* Logo */}
           <div className="mb-8 hidden md:block">
@@ -137,8 +139,7 @@ function App() {
             </p>
           </div>
 
-          {/* Navigation */}
-          <nav className="space-y-1">
+          <nav className="space-y-2">
             {NAV_ITEMS.map((item) => {
               const Icon = item.icon;
               const isActive = currentView === item.id;
@@ -148,15 +149,15 @@ function App() {
                   key={item.id}
                   onClick={() => handleNavigate(item.id)}
                   className={`
-                    w-full flex items-center gap-3 px-4 py-3 rounded-lg
-                    font-medium transition-all cursor-pointer
+                    w-full flex items-center gap-4 px-5 py-4 rounded-2xl
+                    font-bold transition-all duration-300 cursor-pointer
                     ${isActive
-                      ? 'bg-primary text-white shadow-md'
-                      : 'text-text-secondary hover:bg-surface-elevated hover:text-text'
+                      ? 'bg-primary text-white shadow-lg shadow-primary/25 scale-[1.02]'
+                      : 'text-text-secondary hover:bg-surface-elevated hover:text-text hover:translate-x-1'
                     }
                   `}
                 >
-                  <Icon className="w-5 h-5" />
+                  <Icon className={`w-6 h-6 ${isActive ? 'text-white' : 'text-primary/70'}`} />
                   {item.label}
                 </button>
               );
@@ -165,7 +166,7 @@ function App() {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 min-w-0 p-4 md:p-8">
+        <main className="flex-1 min-w-0 p-4 pt-28 md:pt-0 md:pl-8">
           <div className="w-full">
             {renderView()}
           </div>

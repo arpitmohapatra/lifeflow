@@ -21,25 +21,25 @@ export function Modal({ isOpen, onClose, title, children, footer }) {
             className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in"
             onClick={onClose}
         >
-            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-md" />
             <div
-                className="relative bg-surface-elevated rounded-xl p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto animate-slide-up shadow-xl"
+                className="relative bg-surface-elevated rounded-3xl p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto animate-slide-up shadow-2xl border border-glass-border"
                 onClick={(e) => e.stopPropagation()}
             >
-                <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-xl font-bold">{title}</h2>
+                <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-2xl font-black tracking-tight">{title}</h2>
                     <button
                         onClick={onClose}
-                        className="p-1 rounded-lg hover:bg-surface transition-colors"
+                        className="p-2 rounded-2xl hover:bg-surface transition-colors cursor-pointer"
                     >
-                        <X className="w-5 h-5" />
+                        <X className="w-6 h-6" />
                     </button>
                 </div>
-                <div className="mb-6 text-text">
+                <div className="mb-8 text-text">
                     {children}
                 </div>
                 {footer && (
-                    <div className="flex gap-2 justify-end">
+                    <div className="flex gap-3 justify-end">
                         {footer}
                     </div>
                 )}
