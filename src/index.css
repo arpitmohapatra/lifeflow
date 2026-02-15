@@ -1,27 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-    /* Apple-inspired Light Palette */
-    --color-primary: hsl(255 90% 64%);
+    /* Apple Palette */
+    --color-primary-base: 255 90% 64%;
+    --color-primary: hsl(var(--color-primary-base));
     --color-primary-hover: hsl(255 90% 58%);
     --color-secondary: hsl(210 100% 52%);
     --color-accent: hsl(280 85% 65%);
 
-    /* Light Surface System */
-    --color-background: hsl(0 0% 98%);
-    --color-surface: hsla(0 0% 100% / 0.7);
-    --color-surface-elevated: hsl(0 0% 100%);
-    --color-glass: hsla(0 0% 100% / 0.65);
-    --color-glass-border: hsla(0 0% 0% / 0.08);
+    /* Universal Surface Tokens - Mapped to HSL values for opacity support */
+    --color-background: hsl(var(--bg-values));
+    --color-surface: hsla(var(--surface-values) / var(--surface-alpha));
+    --color-surface-elevated: hsl(var(--surface-elevated-values));
+    --color-glass: hsla(var(--surface-values) / var(--glass-alpha));
+    --color-glass-border: var(--glass-border);
 
     /* Typography */
-    --color-text: hsl(240 10% 10%);
-    --color-text-secondary: hsl(240 5% 45%);
-    --color-text-muted: hsl(240 5% 65%);
+    --color-text: var(--text);
+    --color-text-secondary: var(--text-secondary);
+    --color-text-muted: var(--text-muted);
 
     /* Depth & Borders */
-    --color-border: hsla(0 0% 0% / 0.08);
-    --color-divider: hsla(0 0% 0% / 0.05);
+    --color-border: var(--border);
+    --color-divider: var(--divider);
 
     /* Semantic */
     --color-success: hsl(145 65% 42%);
@@ -41,18 +42,35 @@
 }
 
 @layer base {
+    :root {
+        --bg-values: 0 0% 98%;
+        --surface-values: 0 0% 100%;
+        --surface-elevated-values: 0 0% 100%;
+        --surface-alpha: 0.7;
+        --glass-alpha: 0.7;
+
+        --glass-border: hsla(0 0% 0% / 0.08);
+        --text: hsl(240 10% 10%);
+        --text-secondary: hsl(240 5% 45%);
+        --text-muted: hsl(240 5% 65%);
+        --border: hsla(0 0% 0% / 0.08);
+        --divider: hsla(0 0% 0% / 0.05);
+    }
+
     @media (prefers-color-scheme: dark) {
         :root {
-            --color-background: hsl(240 10% 4%);
-            --color-surface: hsla(240 10% 8% / 0.7);
-            --color-surface-elevated: hsl(240 10% 12%);
-            --color-glass: hsla(240 10% 8% / 0.75);
-            --color-glass-border: hsla(0 0% 100% / 0.1);
-            --color-text: hsl(0 0% 98%);
-            --color-text-secondary: hsl(240 5% 75%);
-            --color-text-muted: hsl(240 5% 55%);
-            --color-border: hsla(0 0% 100% / 0.1);
-            --color-divider: hsla(0 0% 100% / 0.05);
+            --bg-values: 240 10% 4%;
+            --surface-values: 240 10% 8%;
+            --surface-elevated-values: 240 10% 12%;
+            --surface-alpha: 0.7;
+            --glass-alpha: 0.8;
+
+            --glass-border: hsla(0 0% 100% / 0.1);
+            --text: hsl(0 0% 98%);
+            --text-secondary: hsl(240 5% 75%);
+            --text-muted: hsl(240 5% 55%);
+            --border: hsla(0 0% 100% / 0.1);
+            --divider: hsla(0 0% 100% / 0.05);
         }
     }
 
