@@ -33,10 +33,15 @@ export function Dashboard({ onNavigate }) {
         const completed = tasks.filter(t => t.completed).length;
         const total = tasks.length;
 
+        // Calculate max streak from habits
+        const maxHabitStreak = allHabits.length > 0
+            ? Math.max(...allHabits.map(h => h.streak || 0))
+            : 0;
+
         setTodayTasks(today.slice(0, 5));
         setHabits(allHabits.slice(0, 4));
         setTodayEvents(todayEvents.slice(0, 3));
-        setStats({ completed, total, streak: 7 });
+        setStats({ completed, total, streak: maxHabitStreak });
     }
 
     return (
