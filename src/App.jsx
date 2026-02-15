@@ -100,7 +100,7 @@ function App() {
       }}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <img src="/icon.svg" alt="LifeFlow Logo" className="w-8 h-8" />
+            <img src={`${import.meta.env.BASE_URL}icon.svg`} alt="LifeFlow Logo" className="w-8 h-8" />
             <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               LifeFlow
             </h1>
@@ -127,7 +127,7 @@ function App() {
           {/* Logo */}
           <div className="mb-8 hidden md:block">
             <div className="flex items-center gap-3 mb-2">
-              <img src="/icon.svg" alt="LifeFlow Logo" className="w-10 h-10" />
+              <img src={`${import.meta.env.BASE_URL}icon.svg`} alt="LifeFlow Logo" className="w-10 h-10" />
               <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 LifeFlow
               </h1>
