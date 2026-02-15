@@ -17,6 +17,8 @@ let dbInstance = null;
 export async function initDB() {
     if (dbInstance) return dbInstance;
 
+    // This initialization is non-destructive. 
+    // It only creates stores if they don't exist and preserves all existing data between deployments.
     dbInstance = await openDB(DB_NAME, DB_VERSION, {
         upgrade(db) {
             if (!db.objectStoreNames.contains(STORES.TASKS)) {
